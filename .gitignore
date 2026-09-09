@@ -1,0 +1,24 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+data/
+KnowledgeBase/
+dist/
+dist_optimized/
+build/
+tmp/
+.coverage
+coverage.xml
+evaluation-report.json
+*.spec
+
+# Local dependencies and environment overrides
+node_modules/
+.env.*
+!.env.example
+*.log
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm

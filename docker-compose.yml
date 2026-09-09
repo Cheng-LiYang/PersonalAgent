@@ -1,0 +1,24 @@
+services:
+  agent:
+    image: personal-knowledge-agent:latest
+    build:
+      context: .
+      args:
+        INSTALL_LOCAL_MODELS: ${INSTALL_LOCAL_MODELS:-false}
+    restart: unless-stopped
+    init: true
+    ports:
+      - "${BIND_HOST:-127.0.0.1}:${PORT:-8080}:8000"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - agent-data:/app/data
+      - model-cache:/root/.cache/huggingface
+      - ./KnowledgeBase:/app/KnowledgeBase
+      - ./config/docker.yaml:/app/config/docker.yaml:ro
+
+volumes:
+  agent-data:
+  model-cache:
